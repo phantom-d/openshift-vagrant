@@ -1,0 +1,35 @@
+# Guest OS timezone
+timezone: Europe/Moscow
+
+# Are we need check box updates for every 'vagrant up'?
+box_check_update: false
+
+# Virtual machine name
+machine_name: openshift
+
+# Virtual machine name
+domain_name: oc.webegin.pro
+
+# Virtual machine IP
+ip: 192.168.0.150
+
+# Vagrant SSH port forwarding
+#vagrant_ssh: 2222
+
+# Virtual machine box
+vm_box: bento/centos-7.3
+    
+# Virtual machine box url
+# vm_box_url: 
+
+# Virtual machine CPU cores number
+cpus: 4
+
+# Virtual machine RAM
+memory: 16384
+
+# Application path
+app_path: /home/vagrant
+
+# Openshift version
+version: v1.4.1
