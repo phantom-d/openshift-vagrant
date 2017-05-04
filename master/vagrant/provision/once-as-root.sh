@@ -35,6 +35,7 @@ git clone https://github.com/openshift/openshift-ansible
 
 cp -f ${app_path}/vagrant/config/invetory.erb ./invetory.erb
 sed -i "s/__WEBCONSOLE__/${web_console}/g" ./invetory.erb
+sed -i "s/__WEBCONSOLEIP__/${ip}/g" ./invetory.erb
 sed -i "s/__VERSION__/${version}/g" ./invetory.erb
 sed -i "s/__WEBAPPS__/${web_apps}/g" ./invetory.erb
 sed -i "s/__WEBNODE__/${web_node}/g" ./invetory.erb
