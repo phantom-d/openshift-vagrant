@@ -16,4 +16,4 @@ Thumbs.db
 .DS_Store
 
 # vagrant runtime
-.vagrant
+/.vagrant

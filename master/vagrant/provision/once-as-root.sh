@@ -6,7 +6,9 @@ app_path=$(echo "$1")
 timezone=$(echo "$2")
 web_console=$(echo "$3")
 web_apps=$(echo "$4")
-version=$(echo "$5")
+web_node=$(echo "$5")
+version=$(echo "$6")
+ip=$(echo "$7")
 
 #== Bash helpers ==
 
@@ -22,26 +24,25 @@ info "Provision script: 'once-as-root.sh', user: `whoami`"
 
 info "Install additional software"
 yum -y install epel-release
-yum -y install docker wget git ansible screen
+yum -y install docker wget git ansible screen mc htop
 yum -y install puthon-cryptography pyOpenSSL.x86_64
+yum -y install ansible
 info "Done!"
 
 info "Install Openshift cluster"
 cd /usr/src
 git clone https://github.com/openshift/openshift-ansible
 
-sed -i "s/__WEBCONSOLE__/${web_console}/g" ${app_path}/config/invetory.erb > ./invetory.erb
+cp -f ${app_path}/vagrant/config/invetory.erb ./invetory.erb
+sed -i "s/__WEBCONSOLE__/${web_console}/g" ./invetory.erb
 sed -i "s/__VERSION__/${version}/g" ./invetory.erb
 sed -i "s/__WEBAPPS__/${web_apps}/g" ./invetory.erb
+sed -i "s/__WEBNODE__/${web_node}/g" ./invetory.erb
 
 mkdir -p ~/.ssh/
+[ -f ~/.ssh/id_rsa ] && rm -f ~/.ssh/id_rsa && rm -f ~/.ssh/id_rsa
 ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
-ansible-playbook -i ./invetory.erb ./openshift-ansible/playbooks/byo/config.yml
-
-htpasswd -b /etc/origin/master/htpasswd admin openshift
-
+cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 info "Done!"
 
 info "Configure screen"
@@ -88,4 +89,6 @@ fi
 FILE
 fi
 
+echo "ansible-playbook -i /usr/src/invetory.erb /usr/src/openshift-ansible/playbooks/byo/config.yml"
+echo "htpasswd -b /etc/origin/master/htpasswd admin openshift"
 echo "Script: 'once-as-root.sh'. Done"

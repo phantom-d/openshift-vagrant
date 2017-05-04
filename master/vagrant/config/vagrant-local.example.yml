@@ -10,8 +10,14 @@ machine_name: openshift
 # Virtual machine name
 domain_name: oc.webegin.pro
 
+# Virtual machine name
+domain_apps: apps.webegin.pro
+
+# Virtual machine name
+domain_node: node01.webegin.pro
+
 # Virtual machine IP
-ip: 192.168.0.150
+ip: 192.168.83.138
 
 # Vagrant SSH port forwarding
 #vagrant_ssh: 2222
@@ -27,9 +33,6 @@ cpus: 4
 
 # Virtual machine RAM
 memory: 16384
-
-# Application path
-app_path: /home/vagrant
 
 # Openshift version
 version: v1.4.1

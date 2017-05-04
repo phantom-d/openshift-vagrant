@@ -9,6 +9,7 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 containerized=true
 openshift_release=__VERSION__
 openshift_image_tag=__VERSION__
+openshift_hostname=__WEBCONSOLE__
 openshift_public_hostname=__WEBCONSOLE__
 openshift_master_default_subdomain=__WEBAPPS__
 openshift_hosted_metrics_deploy=false
@@ -19,3 +20,4 @@ __WEBCONSOLE__ openshift_schedulable=true
 
 [nodes]
 __WEBCONSOLE__ openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true
+__WEBNODE__ openshift_node_labels="{'region': 'primary', 'zone': 'east'}" openshift_schedulable=true openshift_deployment_type=origin
